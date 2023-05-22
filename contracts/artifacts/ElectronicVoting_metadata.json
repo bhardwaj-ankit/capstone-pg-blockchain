@@ -1,0 +1,355 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "startTime_",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "endTime_",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "candidates",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "name",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "candidateId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "voterId",
+						"type": "uint256"
+					}
+				],
+				"name": "didCurrentVoterVoted",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "userVoted_",
+						"type": "bool"
+					},
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "candidateId",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Types.Candidate",
+						"name": "candidate_",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "endTime_",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "currentTime_",
+						"type": "uint256"
+					}
+				],
+				"name": "extendVotingTime",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getCandidateList",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "candidateId",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Types.Candidate[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "currentTime_",
+						"type": "uint256"
+					}
+				],
+				"name": "getResults",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "string",
+								"name": "name",
+								"type": "string"
+							},
+							{
+								"internalType": "uint256",
+								"name": "voteCount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "candidateId",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct Types.Results[]",
+						"name": "",
+						"type": "tuple[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getVotingEndTime",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "endTime_",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "voterId",
+						"type": "uint256"
+					}
+				],
+				"name": "isVoterEligible",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "voterEligible_",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "startTime_",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "currentTime_",
+						"type": "uint256"
+					}
+				],
+				"name": "updateVotingStartTime",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "candidateId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "voterId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "currentTime_",
+						"type": "uint256"
+					}
+				],
+				"name": "vote",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Ankit Bhardwaj",
+			"details": "Impelements replacement for traditional electronic voting  solutions with distributed, non-repudiation, and security  protection characteristics",
+			"kind": "dev",
+			"methods": {
+				"constructor": {
+					"details": "Creates a new voting system to choose one of 'candidates'",
+					"params": {
+						"endTime_": "Voting end time",
+						"startTime_": "Voting start time"
+					}
+				},
+				"didCurrentVoterVoted(uint256)": {
+					"details": "Know whether the voter casted their vote or not. If casted get candidate object.",
+					"params": {
+						"voterId": "Aadhar number of the current voter"
+					},
+					"returns": {
+						"candidate_": "Candidate details to whom voter casted his/her vote",
+						"userVoted_": "Boolean value which gives whether current voter casted vote or not"
+					}
+				},
+				"extendVotingTime(uint256,uint256)": {
+					"details": "To extend the end of the voting",
+					"params": {
+						"currentTime_": "Current time that needs to be updated",
+						"endTime_": "End time that needs to be updated"
+					}
+				},
+				"getCandidateList()": {
+					"details": "Get candidate list.",
+					"returns": {
+						"_0": "candidatesList_ All the candidates who participate in the election"
+					}
+				},
+				"getResults(uint256)": {
+					"details": "sends all candidate list with their votes count",
+					"params": {
+						"currentTime_": "Current epoch time of length 10."
+					},
+					"returns": {
+						"_0": "candidateList_ List of Candidate objects with votes count"
+					}
+				},
+				"getVotingEndTime()": {
+					"details": "Gives ending epoch time of voting",
+					"returns": {
+						"endTime_": "When the voting ends"
+					}
+				},
+				"isVoterEligible(uint256)": {
+					"details": "To find eligibility of the voter.",
+					"params": {
+						"voterId": "of the current voter"
+					},
+					"returns": {
+						"voterEligible_": "Whether the voter with provided voterId is eligible or not"
+					}
+				},
+				"updateVotingStartTime(uint256,uint256)": {
+					"details": "used to update the voting start & end times",
+					"params": {
+						"currentTime_": "Current time that needs to be updated",
+						"startTime_": "Start time that needs to be updated"
+					}
+				},
+				"vote(uint256,uint256,uint256)": {
+					"details": "Give your vote to candidate.",
+					"params": {
+						"candidateId": "of the candidate",
+						"currentTime_": "To check if the election has started or not",
+						"voterId": "of the voter to avoid re-entry"
+					}
+				}
+			},
+			"title": "Electronic Voting System",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/ElectronicVoting.sol": "ElectronicVoting"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/ElectronicVoting.sol": {
+			"keccak256": "0x994ff9b7e2edb844485c7bad58449d43c0843dcca6c79fb5c528ddf9121008f3",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://cddde38dcf9bdeb355ead8995d1a181173306de959cd97b478fd4d15b30cd224",
+				"dweb:/ipfs/QmPuKQnxsnPGLRhxKcr8ZiPXok3pWfJCvpdJYaQ42cyE1T"
+			]
+		},
+		"contracts/Types.sol": {
+			"keccak256": "0xa12edb56df46908a56fb27a76186b3de5f1782c1f435e21044e53b7a30fd83fb",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://b190d95ef508bbf88b62c21462d82b06e83a55bb001f3ec34db3e2497fe169fe",
+				"dweb:/ipfs/QmS7z6LZz9eWfSKrdrAszJwmcWeHtnrAiYqvPJwdT8Dbtz"
+			]
+		}
+	},
+	"version": 1
+}

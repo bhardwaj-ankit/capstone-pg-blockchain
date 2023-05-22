@@ -1,0 +1,48 @@
+{
+	"compiler": {
+		"version": "0.8.20+commit.a1b79de6"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [],
+		"devdoc": {
+			"author": "Suresh Konakanchi",
+			"details": "All custom types that we have used in E-Voting will be declared here",
+			"kind": "dev",
+			"methods": {},
+			"title": "Types",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/Types.sol": "Types"
+		},
+		"evmVersion": "shanghai",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/Types.sol": {
+			"keccak256": "0x3a76f4da74b2624ec0ce5b81a4676e2b15688f8d25da76ad7df8c2ca17116eca",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://794095344230d114c32efe24e670554705609b8df1ea35dc5509d3d799718bd3",
+				"dweb:/ipfs/QmYA7HFdTGQfBMLD7Jh9USkLg1X7qyCqjEBfiJBeftFRZJ"
+			]
+		}
+	},
+	"version": 1
+}
