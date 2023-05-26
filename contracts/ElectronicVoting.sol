@@ -12,14 +12,40 @@ import "./Types.sol";
  * protection characteristics
  */
 contract ElectronicVoting {
-    Types.Candidate[] public candidates;
-    mapping(uint256 => Types.Voter) voter;
-    mapping(uint256 => Types.Candidate) candidate;
+
+    struct Candidate {
+        string Cname;
+        uint256 candidateId; // unique ID of candidate
+        string proposal;
+        address CEAddress;
+    }
+
+    struct Voter {
+        uint256 voterId; // voter unique ID
+        string weight;
+        string Vname;
+        uint8 age;
+        uint256 votedTo; // id of the candidate
+        address VEAddress;
+    }
+
+    struct CandidateResult {
+        uint256 candidateId;
+        string candidateName;
+        uint256 votesCount;
+    }
+
+    mapping(address => Candidate) cand;
+    mapping(address => Voter) voter;
     mapping(uint256 => uint256) internal votesCount;
+
+    Types.Candidate[] public candidates;
+    Types.Voter[] public voters;
 
     address admin;
     uint256 private votingStartTime;
     uint256 private votingEndTime;
+    bool private votingStarted;
 
     /**
      * @dev Creates a new voting system to choose one of 'candidates'
@@ -29,34 +55,143 @@ contract ElectronicVoting {
     constructor(uint256 startTime_, uint256 endTime_) {
         votingStartTime = startTime_;
         votingEndTime = endTime_;
+        votingStarted = false;
         admin = msg.sender;
     }
 
+        /**
+     * @dev To find eligibility of the voter.
+     * @param _Cname of the current voter
+     * @param _proposal of the current voter
+     * @param _owner of the current voter
+     */
+    function addCandidate(string memory _Cname, string memory _proposal, address _owner)
+        public
+        isAdmin
+        votingIsStarted
+    {
+        Candidate[_owner] = cand(_Cname, _proposal);
+    }
+
+        /**
+     * @dev To find eligibility of the voter.
+     * @param _Vname of the current voter
+     * @param vEAddress of the current voter
+     * @param _owner of the current voter
+     */
+    function addVoter(string memory _Vname, address vEAddress, address _owner)
+        public
+        isAdmin
+        votingIsStarted
+    {
+        Voter[_owner] = cand(_Vname, vEAddress);
+    }
+
     /**
-     * @dev Get candidate list.
+     * @dev To start voting
+     */
+    function startElection(address owner)
+        public
+        isAdmin
+    {
+        require(msg.sender == owner);
+        votingStarted = "ONGOING";
+    }
+
+    /**
+     * @dev Display candidate profile.
+     * @param candidateId candidate id of the candidate
      * @return candidatesList_ All the candidates who participate in the election
      */
-    function getCandidateList()
+    function getCandidateElectionEsult(uint256 candidateId)
         public
         view
-        returns (Types.Candidate[] memory)
+        returns (CandidateResult memory)
     {
-        uint256 _politicianOfMyConstituencyLength = 0;
-
-        for (uint256 i = 0; i < candidates.length; i++) {
-            _politicianOfMyConstituencyLength++;
-        }
-        Types.Candidate[] memory cc = new Types.Candidate[](
-            _politicianOfMyConstituencyLength
+        Candidate storage candidate_ = cand[candidateId];
+    
+        Candidate memory cc = new Candidate(
+            candidateId, candidate_.Cname, candidate_.proposal
         );
-
-        uint256 _indx = 0;
-        for (uint256 i = 0; i < candidates.length; i++) {
-            
-                cc[_indx] = candidates[i];
-                _indx++;
-        }
         return cc;
+    }
+
+    /**
+     * @dev sends all candidate list with their votes count
+     * @param currentTime_ Current epoch time of length 10.
+     * @return candidateList_ List of Candidate objects with votes count
+     */
+    function getWinner()
+        public
+        view
+        returns (Types.Results[] memory)
+    {
+        require(votingEndTime < currentTime_);
+        Types.Results[] memory resultsList_ = new Types.Results[](
+            candidates.length
+        );
+        for (uint256 i = 0; i < candidates.length; i++) {
+            resultsList_[i] = Types.Results({
+                name: candidates[i].name,
+                partyShortcut: candidates[i].partyShortcut,
+                partyFlag: candidates[i].partyFlag,
+                nominationNumber: candidates[i].nominationNumber,
+                stateCode: candidates[i].stateCode,
+                constituencyCode: candidates[i].constituencyCode,
+                voteCount: votesCount[candidates[i].nominationNumber]
+            });
+        }
+        return resultsList_;
+    }
+
+    /**
+     * @dev To End voting
+     */
+    function endElection(address owner)
+        public
+        isAdmin
+    {
+        require(msg.sender == owner);
+        votingStarted = "ENDED";
+    }
+
+    /**
+     * @dev Get election result candidate wise.
+     * @param candidateId candidate id of the candidate
+     * @return candidatesList_ All the candidates who participate in the election
+     */
+    function getCandidateElectionEsult(uint256 candidateId)
+        public
+        view
+        returns (CandidateResult memory)
+    {
+        Candidate storage candidate_ = cand[candidateId];
+    
+        CandidateResult memory cr = new CandidateResult(
+            candidateId, candidate_.Cname, votesCount[candidateId]
+        );
+        return cr;
+    }
+
+        /**
+     * @dev Give your vote to candidate.
+     * @param candidateId of the candidate
+     * @param vEAddress of the voter to avoid re-entry
+     */
+    function vote(
+        uint256 candidateId,
+        address vEAddress
+    )
+        public
+        votingIsStarted()
+        isEligibleVote(vEAddress)
+    {
+        // updating the current voter values
+        voter[vEAddress].votedTo = candidateId;
+
+        // updates the votes of the candidate
+        uint256 voteCount_ = votesCount[candidateId];
+        votesCount[candidateId] = voteCount_ + 1;
     }
 
     /**
@@ -69,7 +204,7 @@ contract ElectronicVoting {
         view
         returns (bool voterEligible_)
     {
-        Types.Voter storage voter_ = voter[voterId];
+        Voter storage voter_ = voter[voterId];
         if (voter_.age >= 18 && voter_.votedTo == 0) voterEligible_ = true;
     }
 
@@ -92,20 +227,18 @@ contract ElectronicVoting {
     /**
      * @dev Give your vote to candidate.
      * @param candidateId of the candidate
-     * @param voterId of the voter to avoid re-entry
-     * @param currentTime_ To check if the election has started or not
+     * @param vEAddress of the voter to avoid re-entry
      */
     function vote(
         uint256 candidateId,
-        uint256 voterId,
-        uint256 currentTime_
+        address vEAddress
     )
         public
-        votingLinesAreOpen(currentTime_)
-        isEligibleVote(voterId, candidateId)
+        votingIsStarted()
+        isEligibleVote(vEAddress)
     {
         // updating the current voter values
-        voter[voterId].votedTo = candidateId;
+        voter[vEAddress].votedTo = candidateId;
 
         // updates the votes of the candidate
         uint256 voteCount_ = votesCount[candidateId];
@@ -133,6 +266,23 @@ contract ElectronicVoting {
         votingStartTime = startTime_;
     }
 
+    /** 
+     * @dev Give 'voter' the right to vote on this ballot. May only be called by 'admin'.
+     * @param voterId id of voter
+     */
+    function giveRightToVote(uint256 voterId) public {
+        require(
+            msg.sender == admin,
+            "Only admin can give right to vote."
+        );
+        require(
+            voter[voterId].votedTo != 0,
+            "The voter already voted."
+        );
+        require(voter[voterId].weight == 0);
+        voters[voter].weight = 1;
+    }
+
     /**
      * @dev To extend the end of the voting
      * @param endTime_ End time that needs to be updated
@@ -149,13 +299,13 @@ contract ElectronicVoting {
 
     /**
      * @dev sends all candidate list with their votes count
-     * @param currentTime_ Current epoch time of length 10.
-     * @return candidateList_ List of Candidate objects with votes count
+     * @param candidateId Current epoch time of length 10.
+     * @return CandidateResult List of Candidate objects with votes count
      */
-    function getResults(uint256 currentTime_)
+    function getResults(uint256 candidateId)
         public
         view
-        returns (Types.Results[] memory)
+        returns (CandidateResult memory)
     {
         require(votingEndTime < currentTime_);
         Types.Results[] memory resultsList_ = new Types.Results[](
@@ -173,11 +323,10 @@ contract ElectronicVoting {
 
     /**
      * @notice To check if the voting is open
-     * @param currentTime_ Current epoch time of the voter
      */
-    modifier votingLinesAreOpen(uint256 currentTime_) {
-        require(currentTime_ >= votingStartTime);
-        require(currentTime_ <= votingEndTime);
+    modifier votingIsStarted() 
+    {
+        require(votingStarted == "ONGOING");
         _;
     }
 

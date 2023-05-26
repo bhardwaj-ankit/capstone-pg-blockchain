@@ -10,7 +10,8 @@ pragma solidity >=0.4.25 <0.9.0;
 library Types {
     struct Voter {
         uint256 voterId; // voter unique ID
-        string name;
+        string weight;
+        string Vname;
         uint8 age;
         uint256 votedTo; // id of the candidate
     }
@@ -22,12 +23,14 @@ library Types {
     }
 
     struct Candidate {
-        string name;
+        string Cname;
         uint256 candidateId; // unique ID of candidate
+        string proposal;
+        address CEAddress;
     }
 
     struct Results {
-        string name;
+        string Cname;
         uint256 voteCount; // number of accumulated votes
         uint256 candidateId; // unique ID of candidate
     }
