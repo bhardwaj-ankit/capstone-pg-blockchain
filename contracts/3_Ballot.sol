@@ -29,10 +29,10 @@ contract Ballot {
     Proposal[] public proposals;
 
     /** 
-     * @dev Create a new ballot to choose one of 'proposalNames'.
-     * @param proposalNames names of proposals
+     * @dev Create a new ballot to choose one of 'candidates'.
+     * @param candidates names of proposals
      */
-    constructor(bytes32[] memory proposalNames) {
+    constructor(bytes32[] memory candidates) {
         chairperson = msg.sender;
         voters[chairperson].weight = 1;
 

@@ -8,252 +8,22 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "startTime_",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "endTime_",
-						"type": "uint256"
+						"internalType": "bytes32[]",
+						"name": "proposalNames",
+						"type": "bytes32[]"
 					}
 				],
 				"stateMutability": "nonpayable",
 				"type": "constructor"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "candidates",
-				"outputs": [
-					{
-						"internalType": "string",
-						"name": "name",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "partyShortcut",
-						"type": "string"
-					},
-					{
-						"internalType": "string",
-						"name": "partyFlag",
-						"type": "string"
-					},
-					{
-						"internalType": "uint256",
-						"name": "nominationNumber",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint8",
-						"name": "stateCode",
-						"type": "uint8"
-					},
-					{
-						"internalType": "uint8",
-						"name": "constituencyCode",
-						"type": "uint8"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "voterAadharNumber",
-						"type": "uint256"
-					}
-				],
-				"name": "didCurrentVoterVoted",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "userVoted_",
-						"type": "bool"
-					},
-					{
-						"components": [
-							{
-								"internalType": "string",
-								"name": "name",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "partyShortcut",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "partyFlag",
-								"type": "string"
-							},
-							{
-								"internalType": "uint256",
-								"name": "nominationNumber",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint8",
-								"name": "stateCode",
-								"type": "uint8"
-							},
-							{
-								"internalType": "uint8",
-								"name": "constituencyCode",
-								"type": "uint8"
-							}
-						],
-						"internalType": "struct Types.Candidate",
-						"name": "candidate_",
-						"type": "tuple"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "endTime_",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "currentTime_",
-						"type": "uint256"
-					}
-				],
-				"name": "extendVotingTime",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "voterAadharNumber",
-						"type": "uint256"
-					}
-				],
-				"name": "getCandidateList",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "string",
-								"name": "name",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "partyShortcut",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "partyFlag",
-								"type": "string"
-							},
-							{
-								"internalType": "uint256",
-								"name": "nominationNumber",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint8",
-								"name": "stateCode",
-								"type": "uint8"
-							},
-							{
-								"internalType": "uint8",
-								"name": "constituencyCode",
-								"type": "uint8"
-							}
-						],
-						"internalType": "struct Types.Candidate[]",
-						"name": "",
-						"type": "tuple[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "currentTime_",
-						"type": "uint256"
-					}
-				],
-				"name": "getResults",
-				"outputs": [
-					{
-						"components": [
-							{
-								"internalType": "string",
-								"name": "name",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "partyShortcut",
-								"type": "string"
-							},
-							{
-								"internalType": "string",
-								"name": "partyFlag",
-								"type": "string"
-							},
-							{
-								"internalType": "uint256",
-								"name": "voteCount",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "nominationNumber",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint8",
-								"name": "stateCode",
-								"type": "uint8"
-							},
-							{
-								"internalType": "uint8",
-								"name": "constituencyCode",
-								"type": "uint8"
-							}
-						],
-						"internalType": "struct Types.Results[]",
-						"name": "",
-						"type": "tuple[]"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [],
-				"name": "getVotingEndTime",
+				"name": "chairperson",
 				"outputs": [
 					{
-						"internalType": "uint256",
-						"name": "endTime_",
-						"type": "uint256"
+						"internalType": "address",
+						"name": "",
+						"type": "address"
 					}
 				],
 				"stateMutability": "view",
@@ -262,36 +32,25 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "voterAadharNumber",
-						"type": "uint256"
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
 					}
 				],
-				"name": "isVoterEligible",
-				"outputs": [
-					{
-						"internalType": "bool",
-						"name": "voterEligible_",
-						"type": "bool"
-					}
-				],
-				"stateMutability": "view",
+				"name": "delegate",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "startTime_",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "currentTime_",
-						"type": "uint256"
+						"internalType": "address",
+						"name": "voter",
+						"type": "address"
 					}
 				],
-				"name": "updateVotingStartTime",
+				"name": "giveRightToVote",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -300,17 +59,31 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "nominationNumber",
+						"name": "",
 						"type": "uint256"
+					}
+				],
+				"name": "proposals",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "name",
+						"type": "bytes32"
 					},
 					{
 						"internalType": "uint256",
-						"name": "voterAadharNumber",
+						"name": "voteCount",
 						"type": "uint256"
-					},
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "currentTime_",
+						"name": "proposal",
 						"type": "uint256"
 					}
 				],
@@ -318,83 +91,106 @@
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "voters",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "weight",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "voted",
+						"type": "bool"
+					},
+					{
+						"internalType": "address",
+						"name": "delegate",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "vote",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "winnerName",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "winnerName_",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "winningProposal",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "winningProposal_",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
 			}
 		],
 		"devdoc": {
-			"author": "Suresh Konakanchi",
-			"details": "Implements voting process along with winning candidate",
+			"details": "Implements voting process along with vote delegation",
 			"kind": "dev",
 			"methods": {
 				"constructor": {
-					"details": "Create a new ballot to choose one of 'candidateNames'",
+					"details": "Create a new ballot to choose one of 'proposalNames'.",
 					"params": {
-						"endTime_": "When the voting process will end",
-						"startTime_": "When the voting process will start"
+						"proposalNames": "names of proposals"
 					}
 				},
-				"didCurrentVoterVoted(uint256)": {
-					"details": "Know whether the voter casted their vote or not. If casted get candidate object.",
+				"delegate(address)": {
+					"details": "Delegate your vote to the voter 'to'.",
 					"params": {
-						"voterAadharNumber": "Aadhar number of the current voter"
-					},
+						"to": "address to which vote is delegated"
+					}
+				},
+				"giveRightToVote(address)": {
+					"details": "Give 'voter' the right to vote on this ballot. May only be called by 'chairperson'.",
+					"params": {
+						"voter": "address of voter"
+					}
+				},
+				"vote(uint256)": {
+					"details": "Give your vote (including votes delegated to you) to proposal 'proposals[proposal].name'.",
+					"params": {
+						"proposal": "index of proposal in the proposals array"
+					}
+				},
+				"winnerName()": {
+					"details": "Calls winningProposal() function to get the index of the winner contained in the proposals array and then",
 					"returns": {
-						"candidate_": "Candidate details to whom voter casted his/her vote",
-						"userVoted_": "Boolean value which gives whether current voter casted vote or not"
+						"winnerName_": "the name of the winner"
 					}
 				},
-				"extendVotingTime(uint256,uint256)": {
-					"details": "To extend the end of the voting",
-					"params": {
-						"currentTime_": "Current time that needs to be updated",
-						"endTime_": "End time that needs to be updated"
-					}
-				},
-				"getCandidateList(uint256)": {
-					"details": "Get candidate list.",
-					"params": {
-						"voterAadharNumber": "Aadhar number of the current voter to send the relevent candidates list"
-					},
+				"winningProposal()": {
+					"details": "Computes the winning proposal taking all previous votes into account.",
 					"returns": {
-						"_0": "candidatesList_ All the politicians who participate in the election"
-					}
-				},
-				"getResults(uint256)": {
-					"details": "sends all candidate list with their votes count",
-					"params": {
-						"currentTime_": "Current epoch time of length 10."
-					},
-					"returns": {
-						"_0": "candidateList_ List of Candidate objects with votes count"
-					}
-				},
-				"getVotingEndTime()": {
-					"details": "Gives ending epoch time of voting",
-					"returns": {
-						"endTime_": "When the voting ends"
-					}
-				},
-				"isVoterEligible(uint256)": {
-					"details": "Get candidate list.",
-					"params": {
-						"voterAadharNumber": "Aadhar number of the current voter to send the relevent candidates list"
-					},
-					"returns": {
-						"voterEligible_": "Whether the voter with provided aadhar is eligible or not"
-					}
-				},
-				"updateVotingStartTime(uint256,uint256)": {
-					"details": "used to update the voting start & end times",
-					"params": {
-						"currentTime_": "Current time that needs to be updated",
-						"startTime_": "Start time that needs to be updated"
-					}
-				},
-				"vote(uint256,uint256,uint256)": {
-					"details": "Give your vote to candidate.",
-					"params": {
-						"currentTime_": "To check if the election has started or not",
-						"nominationNumber": "Aadhar Number of the candidate",
-						"voterAadharNumber": "Aadhar Number of the voter to avoid re-entry"
+						"winningProposal_": "index of winning proposal in the proposals array"
 					}
 				}
 			},
@@ -409,7 +205,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Capstone.sol": "Ballot"
+			"contracts/3_Ballot.sol": "Ballot"
 		},
 		"evmVersion": "shanghai",
 		"libraries": {},
@@ -423,20 +219,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Capstone.sol": {
-			"keccak256": "0xd770eb94c1333ea3c8ee22e08b0ebe35285d486eae3a756a7eeb27e272810f62",
+		"contracts/3_Ballot.sol": {
+			"keccak256": "0x83fe6b367c140a5c7678c420da454c8c3866ccae12da149c5da3ce6568d29b6c",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://2b55f5736099675be3b71835166b02a59ca61ed5fad90db9b2aa381eb8ac3bf2",
-				"dweb:/ipfs/QmZNvN4GX1dswkwqj7CHejAoNCrKTzyefySdFg3k7BYdVc"
-			]
-		},
-		"contracts/Types.sol": {
-			"keccak256": "0x3a76f4da74b2624ec0ce5b81a4676e2b15688f8d25da76ad7df8c2ca17116eca",
-			"license": "GPL-3.0",
-			"urls": [
-				"bzz-raw://794095344230d114c32efe24e670554705609b8df1ea35dc5509d3d799718bd3",
-				"dweb:/ipfs/QmYA7HFdTGQfBMLD7Jh9USkLg1X7qyCqjEBfiJBeftFRZJ"
+				"bzz-raw://5902f2f468a1f776b8f2cb9d584371af88e181954298af92402fca01d0dba3e7",
+				"dweb:/ipfs/QmSUodhSvoorFL5m5CNqve8YvmuBpjCq17NbTf4GUX8ydw"
 			]
 		}
 	},
