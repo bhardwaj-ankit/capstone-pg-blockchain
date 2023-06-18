@@ -192,7 +192,7 @@
 								"type": "uint256"
 							}
 						],
-						"internalType": "struct OnlineElection.Candidate[]",
+						"internalType": "struct OnlineVotingElection.Candidate[]",
 						"name": "",
 						"type": "tuple[]"
 					}
@@ -232,7 +232,7 @@
 								"type": "uint16"
 							}
 						],
-						"internalType": "struct OnlineElection.Voter[]",
+						"internalType": "struct OnlineVotingElection.Voter[]",
 						"name": "",
 						"type": "tuple[]"
 					}
@@ -459,7 +459,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Capstone.sol": "OnlineElection"
+			"contracts/Capstone.sol": "OnlineVotingElection"
 		},
 		"evmVersion": "paris",
 		"libraries": {},
@@ -474,11 +474,11 @@
 	},
 	"sources": {
 		"contracts/Capstone.sol": {
-			"keccak256": "0x4a2b41e8666567bec383af3e7f8e8bebb789077c03dc196964e77bd837a75167",
+			"keccak256": "0xd9d9e885d5d2147f724b7019bab8e4f69ac5cb3ebe7578649da8125fbb1d90e8",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://70d4ad51f3cab5e1866d6344e53befe0c32f2449b3fe37a24e2f8e48f51cecf4",
-				"dweb:/ipfs/QmU6fR9zRMSY7XtJkFbB6zJ9EHjoYUFunHAch1vs4KBFgV"
+				"bzz-raw://f13084a3be8a3fd5a91ad6b7b57ac6f738cacf5cf6a27130b22e35621eeb9bb2",
+				"dweb:/ipfs/QmaBZ4PCyCwiYvdZJ79SM5oJmxD1nDVqpk2WPgbqShxkvF"
 			]
 		}
 	},

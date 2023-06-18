@@ -8,7 +8,7 @@ pragma solidity ^0.8.17.0;
  * solutions with distributed, non-repudiation, and security 
  * protection characteristics
  */
-contract OnlineElection {
+contract ElectronicVoting {
     struct Candidate {
         string Cname;
         string proposal;

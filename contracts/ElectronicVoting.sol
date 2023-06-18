@@ -17,14 +17,10 @@ contract ElectronicVoting {
         string Cname;
         uint256 candidateId; // unique ID of candidate
         string proposal;
-        uint256 voteCount;
-        uint256 rank;
+        address CEAddress;
     }
 
     struct Voter {
-        address delegate;
-        bool voted;
-        uint256 vote;
         uint256 voterId; // voter unique ID
         uint weight;
         string Vname;
@@ -32,22 +28,33 @@ contract ElectronicVoting {
         uint256 votedTo; // id of the candidate
         address VEAddress;
     }
-    
-    address public admin;
-    bool public electionStarted;
-    bool public electionEnded;
+ 
+    struct CandidateResult {
+        uint256 candidateId;    
+        string candidateName;
+        uint256 votesCount;
+    }
 
-    mapping(address => Voter) public voters;
+    mapping(address => Candidate) cand;
+    mapping(address => Voter) voter;
+    mapping(uint256 => Candidate) candWithId;
+    mapping(uint256 => Voter) voterWithId;
+    mapping(uint256 => CandidateResult) canResult;
+    mapping(uint256 => uint256) internal votesCount;
+
     Candidate[] public candidates;
-    address[] public voterAddresses;
+    Voter[] public voters;
+
+    address admin;
+    uint256 private cint;
+    uint256 private vint;
+    string private votingStarted;
 
     /**
      * @dev Creates a new voting system to choose one of 'candidates'
      */
-     constructor() {
+    constructor() {
         admin = msg.sender;
-        electionStarted = false;
-        electionEnded = false;
     }
 
     /**
